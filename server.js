@@ -6,7 +6,7 @@ const url = "https://sephora.p.rapidapi.com/products/list";
 // api.ecommerce.com/products wasn't working properly, so I used sephora.p.rapidapi.com/products/list,
 // but this api doesn't provide query string options
 const headers = {
-  "X-RapidAPI-Key": "81522e7db3msh2b79e14c38f8161p1ca4e6jsna04f1b19f18d",
+  "X-RapidAPI-Key": "0e6a09556emsh91125054d684471p19ff4ejsn9aede723c751",
   "X-RapidAPI-Host": "sephora.p.rapidapi.com",
 };
 
@@ -22,7 +22,7 @@ const categories = [
   // "cat140014",
   // "cat1830032",
   // this api has a several categories and in order to get all of we have to fetch them with different params
-  // so I created this array
+  // so I created this array, and enabled only 5 of them is request limit per second is 5
 ];
 
 async function getAllPrices() {
@@ -39,6 +39,7 @@ async function getAllPrices() {
         .then((response) => {
           const data = response.data.products;
           allProducts = [...allProducts, ...data]; // I am adding all the products to the array
+          console.log(`${i} category is fetched`);
         })
         .catch((error) => {
           console.log(error);
